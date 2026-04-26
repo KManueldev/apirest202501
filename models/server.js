@@ -44,7 +44,6 @@ class Server {
 
         //Aqui me conecto a la BD
         this.dbConnection();
-
         //Aqui me conecto a MongoDB
         //this.conectarBDMongo();
 

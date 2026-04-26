@@ -109,7 +109,7 @@ const qrLecturaPost = async (req = request, res = response) => {
 
         // ── Crear registro ────────────────────────────────────────────────────
         const nuevaLectura = await QRLectura.create({
-            usuarioId,
+            usuarioId: usuarioId,
             pelicula_id,
             original_language:    original_language || null,
             original_title,
