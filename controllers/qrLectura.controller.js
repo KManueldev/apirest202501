@@ -79,6 +79,7 @@ const qrLecturaIdGet = async (req = request, res = response) => {
  * }
  */
 const qrLecturaPost = async (req = request, res = response) => {
+    const usuarioId = req.usuario.id;
     try {
         const {
             // payload del QR
@@ -108,6 +109,7 @@ const qrLecturaPost = async (req = request, res = response) => {
 
         // ── Crear registro ────────────────────────────────────────────────────
         const nuevaLectura = await QRLectura.create({
+            usuarioId,
             pelicula_id,
             original_language:    original_language || null,
             original_title,
@@ -204,6 +206,31 @@ const qrLecturasPorPeliculaGet = async (req = request, res = response) => {
 };
 
 
+// ─── GET /api/qr-lecturas/mis ───────────────────────────────────────────────
+const misQrLecturasGet = async (req = request, res = response) => {
+    try {
+        const usuarioId = req.usuario.id;
+
+        const lecturas = await QRLectura.findAll({
+            where: { usuarioId },
+            order: [['fecha_hora_lectura', 'DESC']],
+        });
+
+        res.json({
+            ok: true,
+            data: lecturas
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Error obteniendo tus QR'
+        });
+    }
+};
+
+
 module.exports = {
     qrLecturasGet,
     qrLecturaIdGet,
@@ -211,4 +238,5 @@ module.exports = {
     qrLecturaPut,
     qrLecturaDelete,
     qrLecturasPorPeliculaGet,
+    misQrLecturasGet,
 };

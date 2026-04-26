@@ -6,7 +6,7 @@ const Usuario = require('../models/mySqlUsuario');
 
 
 const validarJWT = async (req = request, res = response, next) => {
-    const token = req.header('x-token');
+    const token = req.header('Authorization')?.replace('Bearer ', '');
 
 
     if (!token) {

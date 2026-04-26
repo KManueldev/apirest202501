@@ -20,7 +20,6 @@ const QRLectura = bdmysql.define('qr_lecturas',
             primaryKey: true,
             allowNull: false,
         },
-
         // ─── Datos de la película (del JSON dentro del QR) ────────────────────
         'pelicula_id': {
             type: DataTypes.BIGINT,
@@ -43,6 +42,11 @@ const QRLectura = bdmysql.define('qr_lecturas',
             type: DataTypes.STRING(100),
             allowNull: false,
             comment: 'Nickname del usuario que generó el QR'
+        },
+        'usuarioId': {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            comment: 'ID del usuario que generó el QR'
         },
         'geo_generacion': {
             type: DataTypes.STRING(50),

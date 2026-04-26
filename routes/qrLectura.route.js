@@ -1,4 +1,6 @@
 const { Router } = require('express');
+const { validarJWT } = require('../middlewares/validar-jwt');
+
 
 const {
     qrLecturasGet,
@@ -7,6 +9,7 @@ const {
     qrLecturaPut,
     qrLecturaDelete,
     qrLecturasPorPeliculaGet,
+    misQrLecturasGet,
 } = require('../controllers/qrLectura.controller');
 
 const router = Router();
@@ -16,6 +19,9 @@ router.get('/', qrLecturasGet);
 
 // GET  /api/qr-lecturas/pelicula/:peliculaId   → lecturas por película
 router.get('/pelicula/:peliculaId', qrLecturasPorPeliculaGet);
+
+// SOLO MIS QR (requiere login)
+router.get('/mis', validarJWT, misQrLecturasGet);
 
 // GET  /api/qr-lecturas/:id                    → una lectura por PK
 router.get('/:id', qrLecturaIdGet);

@@ -4,11 +4,11 @@ const cors = require('cors')
 const { bdmysql } = require('../database/MySqlConnection');
 
 // Importar modelos para que Sequelize los registre
-require('./mySqlUsuario');
-require('./mySqlHeroes');
-require('./mySqlPeliculas');
-require('./mySqlProtagonista');
-require('./mySqlQRLectura');
+require('../models/mySqlUsuario');
+require('../models/mySqlHeroes');
+require('../models/mySqlPeliculas');
+require('../models/mySqlProtagonista')
+require('../models/mySqlQRLectura');
 
 //const { dbConnectionMongo } = require('../database/MongoConnection');
 
