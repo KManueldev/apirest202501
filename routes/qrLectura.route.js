@@ -27,7 +27,7 @@ router.get('/mis', validarJWT, misQrLecturasGet);
 router.get('/:id', qrLecturaIdGet);
 
 // POST /api/qr-lecturas                        → registrar nueva lectura de QR
-router.post('/', qrLecturaPost);
+router.post('/', validarJWT, qrLecturaPost);
 
 // PUT  /api/qr-lecturas/:id                    → actualizar lectura existente
 router.put('/:id', qrLecturaPut);
